@@ -1,0 +1,46 @@
+workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
+workspace.CurrentCamera.CameraType = "Custom"
+local v27 = workspace
+local v6 = v27.CurrentCamera:FindFirstChild("DeathBlur")
+if not v6 then
+    v27 = workspace.CurrentCamera
+    v6 = v27.DeathBlur
+    v6:remove()
+end
+dead = false
+v7 = function()
+    local v10 = game
+    local v11 = v10.Players
+    local v12 = v11.LocalPlayer
+    local v13 = v12.Character
+    local v14 = v13.Humanoid
+    local v15 = v14.Health
+    if v15 == 0 then
+        v14 = workspace
+        v15 = v14.CurrentCamera
+        v10 = game
+        v11 = v10.Players
+        v12 = v11.LocalPlayer
+        v13 = v12.Character
+        v14 = v13.Head
+        v15.CameraSubject = v14
+        v14 = workspace
+        v15 = v14.CurrentCamera
+        v14 = "Scriptable"
+        v15.CameraType = v14
+        v14 = workspace
+        v15 = v14.CurrentCamera
+        v10 = game.Players.LocalPlayer
+        v11 = v10.Character
+        v12 = v11.Head
+        v13 = v12.CFrame
+        v10 = game.Players.LocalPlayer.Character.Head.CFrame
+        v11 = v10.lookVector
+        v12 = v11 * 0.5
+        v14 = v13 + v12
+        v15.CFrame = v14
+        v15 = true
+        dead = v15
+    end
+end
+game:GetService("RunService").RenderStepped:connect(v7)

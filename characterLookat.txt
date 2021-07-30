@@ -1,0 +1,16 @@
+local v3 = game.Workspace.CurrentCamera
+local v6 = game.Players.LocalPlayer.CharacterAdded:Wait()
+local v9 = v6:WaitForChild("HumanoidRootPart")
+local v13 = game.ReplicatedStorage:WaitForChild("characterLookAtCore")
+local v17 = require(v13.lookAt).new(v6)
+v13.init:FireServer(v6, v6:WaitForChild("Humanoid"))
+local v23 = game:GetService("RunService")
+v23.RenderStepped:Connect(function(p1)
+    v17:calcGoal(v9.CFrame * CFrame.new(0, 3, 0).p + v3.CFrame.LookVector)
+    v17:update(p1)
+end)
+while true do
+    v13.update:FireServer(v9.CFrame * CFrame.new(0, 3, 0).p + v3.CFrame.LookVector)
+    v23 = 0.2
+    wait(v23)
+end

@@ -1,0 +1,34 @@
+local v1 = script
+local v2 = v1.Parent
+v1 = v2.Humanoid
+(game:GetService("ContextActionService")):BindAction("Ragdoll me", function(p1, p2)
+    local v8 = Enum.UserInputState.Begin
+    if p2 == v8 then
+        local v10 = v1:GetState()
+        local v11 = Enum.HumanoidStateType.Physics
+        if v10 == v11 then
+            v8 = false
+        end
+        v8 = true
+        v10 = v1
+        if not v8 then
+            local v12 = Enum.HumanoidStateType.Physics
+            if v12 then
+                v12 = Enum.HumanoidStateType.GettingUp
+            end
+            v10:ChangeState(v12)
+            v11 = v2
+            local v13 = v11.Animate
+            v13.Disabled = v8
+            if not v8 then
+                v13 = pairs
+                v11 = v1
+                local v14, v15, v16 = v13(v11:GetPlayingAnimationTracks())
+                for v17, v18 in v14, v15, v16 do
+                    v18:Stop(0)
+                end
+            end
+            return 
+        end
+    end
+end, false, Enum.KeyCode.R)

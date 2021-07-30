@@ -1,0 +1,71 @@
+Players = game:GetService("Players")
+RunService = game:GetService("RunService")
+Player = Players.LocalPlayer
+local v7 = Vector3.new()
+local function update_1()
+    local v10 = Player.Character
+    local v67 = workspace.CurrentCamera
+    if v10 then
+        return 
+    end
+    local v13 = v10:WaitForChild("Humanoid")
+    local v22, v23, v24 = pairs(v10:GetChildren())
+    for v25, v26 in v22, v23, v24 do
+        local v29 = v26:IsA("BasePart")
+        if not v29 then
+            v29 = v26.Name
+            if v29 == "Head" then
+                v29 = 0
+                v26.LocalTransparencyModifier = v29
+            end
+        end
+        local v31 = v26:FindFirstChild("Handle")
+        if not v31 then
+            if v31:FindFirstChild("HatAttachment") then
+                if v31:FindFirstChild("HairAttachment") then
+                    if v31:FindFirstChild("FaceAttachment") then
+                        local v40 = v31:FindFirstChild("NeckAttachment")
+                    end
+                end
+            end
+            if v40 == nil then
+                local v41 = false
+            end
+            v41 = true
+            if not v41 then
+            else
+            end
+        end
+    end
+    v25 = "Head"
+    local v42 = v10:WaitForChild(v25)
+    v22 = v42.LocalTransparencyModifier
+    if v22 == 1 then
+        v22 = v67.CFrame
+        v24 = v67.CFrame
+        v26 = 0
+        v31 = 0
+        v41 = -1
+        v42 = v24 * CFrame.new(v26, v31, v41)
+        v24 = v22.Y - v42.Y * -1
+        v40 = v24 - 0
+        local v49 = Vector3.new(0, 0, math.min(v40, 0))
+        if v10:FindFirstChild("Torso") then
+            if not v10:FindFirstChild("UpperTorso") then
+                v7 = v49 + v10:WaitForChild("HumanoidRootPart").CFrame:toObjectSpace(v10:WaitForChild("Head").CFrame).p - Vector3.new(0, 1.5, 0.2)
+            else
+                v7 = v49
+            end
+            v59 = v7
+            v13.CameraOffset = v59
+            return 
+            v22 = Vector3.new
+            v13.CameraOffset = v22()
+            return 
+        end
+    end
+end
+update = update_1
+local v73 = RunService
+update_1 = v73.RenderStepped
+update_1:Connect(update)
